@@ -27,6 +27,7 @@
         <module>passnail.data</module>
         <module>passnail.security</module>
         <module>passnail.web</module>
+        <module>passnail.test</module>
     </modules>
 
 
