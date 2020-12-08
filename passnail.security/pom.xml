@@ -11,5 +11,42 @@
 
     <artifactId>passnail.security</artifactId>
 
+    <packaging>jar</packaging>
+
+
+    <dependencies>
+        <!-- Internal dependencies -->
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.data.transfer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.data.model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.data.access</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <!-- External dependencies -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-oauth2-resource-server</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.session</groupId>
+            <artifactId>spring-session-core</artifactId>
+        </dependency>
+
+    </dependencies>
+
 
 </project>

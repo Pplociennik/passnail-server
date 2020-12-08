@@ -13,8 +13,9 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>passnail.web.ws</module>
+        <module>passnail.web.iwa</module>
         <module>passnail.web.service</module>
+        <module>passnail.web.api</module>
     </modules>
 
 

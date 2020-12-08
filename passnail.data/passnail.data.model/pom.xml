@@ -11,5 +11,7 @@
 
     <artifactId>passnail.data.model</artifactId>
 
+    <packaging>jar</packaging>
+
 
 </project>

@@ -9,7 +9,7 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>passnail.data.access</artifactId>
+    <artifactId>passnail.data.transfer</artifactId>
 
     <packaging>jar</packaging>
 
@@ -21,6 +21,5 @@
             <version>${project.version}</version>
         </dependency>
     </dependencies>
-
 
 </project>

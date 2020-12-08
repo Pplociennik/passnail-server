@@ -11,5 +11,25 @@
 
     <artifactId>passnail.web.service</artifactId>
 
+    <packaging>jar</packaging>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.data.transfer</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.data.access</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.security</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>

@@ -11,5 +11,20 @@
 
     <artifactId>passnail.test</artifactId>
 
+    <packaging>jar</packaging>
+
+
+    <dependencies>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.web.api</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.web.iwa</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
 
 </project>
