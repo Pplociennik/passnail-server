@@ -42,7 +42,7 @@
     <properties>
         <java.version>11</java.version>
 
-        <value.spring.datasource.url>jdbc:h2:~/test;DB_CLOSE_ON_EXIT=FALSE</value.spring.datasource.url>
+        <value.spring.datasource.url>jdbc:h2:~/test.db;DB_CLOSE_ON_EXIT=FALSE</value.spring.datasource.url>
         <value.spring.datasource.username>sa</value.spring.datasource.username>
         <value.spring.datasource.password></value.spring.datasource.password>
         <value.spring.datasource.driverClassName>org.h2.Driver</value.spring.datasource.driverClassName>

@@ -1,16 +1,15 @@
 package com.passnail.data.model.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.UUID;
 
 /**
- * The entity of the Password object being stored in the database.
+ * The {@link Entity} of the Credentials object being stored in the database. The data in this table is encrypted.
  */
 
 @Entity
@@ -18,6 +17,8 @@ import java.util.UUID;
 @Builder
 @Data
 @EqualsAndHashCode
+@AllArgsConstructor
+@NoArgsConstructor
 public class CredentialsEntity {
 
 
@@ -54,7 +55,7 @@ public class CredentialsEntity {
 
 
     /**
-     * A {@link String being the url of the site which credentials belongs to.}
+     * A {@link String} being the url of the site which credentials belongs to.
      */
     @Column(name = "CRED_URL")
     private String url;
@@ -80,4 +81,13 @@ public class CredentialsEntity {
      */
     @Column(name = "CRED_LAST_MOD", nullable = false)
     private Date lastModificationDate;
+
+
+    /**
+     * An {@link UUID} typed identifier of the user being the credentials' owner.
+     */
+    @ManyToOne
+    @JoinColumn(name = "USR_CREDS", nullable = false)
+    @Column(name = "CRED_OWNER")
+    private UserEntity credentialsOwner;
 }
