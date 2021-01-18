@@ -65,7 +65,7 @@ public class UserEntity {
     /**
      * A {@link Set} of {@link CredentialsEntity} typed objects being a list of credentials created by user.
      */
-    @OneToMany(mappedBy = "CRED_OWNER")
+    @OneToMany(mappedBy = "CRED_OWNER", fetch = FetchType.EAGER)
     @Column(name = "USR_CREDS")
     private Set<CredentialsEntity> savedCredentials;
 }

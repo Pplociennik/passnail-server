@@ -2,7 +2,6 @@ package com.passnail.data.model.entity;
 
 import lombok.*;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.ManyToAny;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -86,7 +85,7 @@ public class CredentialsEntity {
     /**
      * An {@link UUID} typed identifier of the user being the credentials' owner.
      */
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "USR_CREDS", nullable = false)
     @Column(name = "CRED_OWNER")
     private UserEntity credentialsOwner;

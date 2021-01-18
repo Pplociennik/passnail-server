@@ -13,5 +13,4 @@ import java.util.UUID;
 @Repository
 public interface CredentialsRepository extends JpaRepository<CredentialsEntity, UUID> {
 
-
 }
