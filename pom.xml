@@ -42,26 +42,29 @@
     <properties>
         <java.version>11</java.version>
 
-        <value.spring.datasource.url>jdbc:h2:~/test.db;DB_CLOSE_ON_EXIT=FALSE</value.spring.datasource.url>
-        <value.spring.datasource.username>sa</value.spring.datasource.username>
-        <value.spring.datasource.password></value.spring.datasource.password>
-        <value.spring.datasource.driverClassName>org.h2.Driver</value.spring.datasource.driverClassName>
-        <value.spring.jpa.database-platform>org.hibernate.dialect.H2Dialect</value.spring.jpa.database-platform>
-        <value.spring.jpa.hibernate.ddl-auto>create</value.spring.jpa.hibernate.ddl-auto>
-
         <version.jasypt.spring.boot.starter>3.0.3</version.jasypt.spring.boot.starter>
         <version.lombok>1.18.16</version.lombok>
         <version.maven.javadoc.plugin>3.2.0</version.maven.javadoc.plugin>
+        <version.spring.boot.strater.data.jdbc>2.4.2</version.spring.boot.strater.data.jdbc>
     </properties>
 
 
     <dependencies>
 
-        <!-- Spring -->
-
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+            <version>${version.spring.boot.strater.data.jdbc}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -78,37 +81,25 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- DB and configuration -->
-
-        <dependency>
-            <groupId>com.h2database</groupId>
-            <artifactId>h2</artifactId>
-            <scope>runtime</scope>
-        </dependency>
         <dependency>
             <groupId>com.github.ulisesbocchio</groupId>
             <artifactId>jasypt-spring-boot-starter</artifactId>
             <version>${version.jasypt.spring.boot.starter}</version>
         </dependency>
 
-        <dependency>
-            <groupId>org.apache.maven.plugins</groupId>
-            <artifactId>maven-javadoc-plugin</artifactId>
-            <version>${version.maven.javadoc.plugin}</version>
-        </dependency>
 
 
     </dependencies>
 
     <build>
-        <pluginManagement>
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                </plugin>
-            </plugins>
-        </pluginManagement>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>${version.maven.javadoc.plugin}</version>
+            </plugin>
+        </plugins>
     </build>
+
 
 </project>
