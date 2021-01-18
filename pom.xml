@@ -19,6 +19,14 @@
 
     <description>Server application of the PasSnail password manager.</description>
 
+    <developers>
+        <developer>
+            <name>Przemysław Płóciennik</name>
+            <url>https://github.com/Pplociennik</url>
+            <email>pplociennik097@gmail.com</email>
+        </developer>
+    </developers>
+
     <packaging>pom</packaging>
 
 
@@ -33,10 +41,24 @@
 
     <properties>
         <java.version>11</java.version>
+
+        <value.spring.datasource.url>jdbc:h2:~/test;DB_CLOSE_ON_EXIT=FALSE</value.spring.datasource.url>
+        <value.spring.datasource.username>sa</value.spring.datasource.username>
+        <value.spring.datasource.password></value.spring.datasource.password>
+        <value.spring.datasource.driverClassName>org.h2.Driver</value.spring.datasource.driverClassName>
+        <value.spring.jpa.database-platform>org.hibernate.dialect.H2Dialect</value.spring.jpa.database-platform>
+        <value.spring.jpa.hibernate.ddl-auto>create</value.spring.jpa.hibernate.ddl-auto>
+
+        <version.jasypt.spring.boot.starter>3.0.3</version.jasypt.spring.boot.starter>
+        <version.lombok>1.18.16</version.lombok>
+        <version.maven.javadoc.plugin>3.2.0</version.maven.javadoc.plugin>
     </properties>
 
 
     <dependencies>
+
+        <!-- Spring -->
+
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
@@ -55,6 +77,27 @@
             <artifactId>spring-security-test</artifactId>
             <scope>test</scope>
         </dependency>
+
+        <!-- DB and configuration -->
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.github.ulisesbocchio</groupId>
+            <artifactId>jasypt-spring-boot-starter</artifactId>
+            <version>${version.jasypt.spring.boot.starter}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <version>${version.maven.javadoc.plugin}</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
