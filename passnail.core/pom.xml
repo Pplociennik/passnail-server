@@ -18,7 +18,7 @@
     <properties>
         <value.spring.datasource.url>jdbc:h2:file:./bazaDanych</value.spring.datasource.url>
         <value.spring.datasource.username>sa</value.spring.datasource.username>
-        <value.spring.datasource.password></value.spring.datasource.password>
+        <value.spring.datasource.password>sa</value.spring.datasource.password>
         <value.spring.datasource.driverClassName>org.h2.Driver</value.spring.datasource.driverClassName>
         <value.spring.jpa.database-platform>org.hibernate.dialect.H2Dialect</value.spring.jpa.database-platform>
         <value.spring.jpa.hibernate.ddl-auto>create</value.spring.jpa.hibernate.ddl-auto>
@@ -28,6 +28,18 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.passay</groupId>
+            <artifactId>passay</artifactId>
+            <version>${version.passay}</version>
+        </dependency>
+
+
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.web.service</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
 
@@ -46,7 +58,7 @@
                                 <goal>repackage</goal>
                             </goals>
                             <configuration>
-                                <mainClass>com.passnail.server.core.main.ServerStarter</mainClass>
+                                <mainClass>com.passnail.server.core.app.main.ServerStarter</mainClass>
                             </configuration>
                         </execution>
                     </executions>

@@ -1,4 +1,4 @@
-package com.passnail.server.core.main;
+package com.passnail.server.core.app.main;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

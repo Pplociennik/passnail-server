@@ -31,6 +31,18 @@
             <artifactId>passnail.data.access</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.core</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>javax.servlet</groupId>
+            <artifactId>javax.servlet-api</artifactId>
+            <version>${version.javax.servlet.api}</version>
+            <scope>provided</scope>
+        </dependency>
+
 
         <!-- External dependencies -->
         <dependency>
