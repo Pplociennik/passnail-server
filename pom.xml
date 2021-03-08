@@ -13,7 +13,7 @@
 
 
     <groupId>com.passnail</groupId>
-    <artifactId>passnail.parent</artifactId>
+    <artifactId>passnail.server.parent</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>passnail.parent</name>
 
@@ -31,11 +31,11 @@
 
 
     <modules>
-        <module>passnail.core</module>
-        <module>passnail.data</module>
-        <module>passnail.security</module>
-        <module>passnail.web</module>
-        <module>passnail.test</module>
+        <module>passnail.server.core</module>
+        <module>passnail.server.data</module>
+        <module>passnail.server.security</module>
+        <module>passnail.server.web</module>
+        <module>passnail.server.test</module>
     </modules>
 
 

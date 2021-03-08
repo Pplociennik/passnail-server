@@ -1,4 +1,4 @@
-package passnail.web.iwa.api;
+package com.passnail.server.web.api;
 
 
 import org.springframework.stereotype.Controller;
