@@ -1,10 +1,14 @@
 package com.passnail.data.model.entity;
 
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.Objects;
 import java.util.UUID;
 
 /**
@@ -15,7 +19,6 @@ import java.util.UUID;
 @Table(name = "COM_PSSNL_CRED")
 @Builder
 @Data
-@EqualsAndHashCode
 @AllArgsConstructor
 @NoArgsConstructor
 public class CredentialsEntity {
@@ -29,20 +32,20 @@ public class CredentialsEntity {
     @GenericGenerator(
             name = "UUID",
             strategy = "org.hibernate.id.UUIDGenerator")
-    @Column(name = "ID", insertable = false, updatable = false, nullable = false, unique = true)
-    private UUID ID;
+    @Column(name = "CREDS_ID", insertable = false, updatable = false, nullable = false, unique = true)
+    private UUID credsID;
 
     /**
      * A {@link String} being a password saved to the database.
      */
-    @Column(name = "PASS_VALUE", nullable = false)
+    @Column(name = "PASS_VALUE")
     private String password;
 
 
     /**
      * A {@link String} being a short name of the saved password. The name can be set by user for being a natural language user friendly identifier.
      */
-    @Column(name = "CRED_NAME")
+    @Column(name = "CRED_NAME", unique = true, nullable = false)
     private String credentialsShortName;
 
 
@@ -71,7 +74,7 @@ public class CredentialsEntity {
     /**
      * A {@link Date} being the exact date when the credentials were created.
      */
-    @Column(name = "CRED_CRT", updatable = false, nullable = false)
+    @Column(name = "CRED_CRT", nullable = false, updatable = false)
     private Date creationDate;
 
 
@@ -85,8 +88,28 @@ public class CredentialsEntity {
     /**
      * An {@link UUID} typed identifier of the user being the credentials' owner.
      */
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "USR_CREDS", nullable = false)
-    @Column(name = "CRED_OWNER")
+    @ManyToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "CREDENTIALS_OWNER", referencedColumnName = "USR_ID")
     private UserEntity credentialsOwner;
+
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CredentialsEntity that = (CredentialsEntity) o;
+        return Objects.equals(password, that.password) &&
+                credentialsShortName.equals(that.credentialsShortName) &&
+                Objects.equals(login, that.login) &&
+                Objects.equals(url, that.url) &&
+                Objects.equals(description, that.description) &&
+                creationDate.equals(that.creationDate) &&
+                lastModificationDate.equals(that.lastModificationDate) &&
+                credentialsOwner.equals(that.credentialsOwner);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(password, credentialsShortName, login, url, description, creationDate, lastModificationDate, credentialsOwner);
+    }
 }

@@ -1,7 +1,6 @@
 package com.passnail.data.access.model.dao;
 
 
-import com.passnail.data.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
