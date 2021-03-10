@@ -1,5 +1,6 @@
 package com.passnail.data.model.entity;
 
+import com.passnail.data.model.status.CredentialsStatus;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -85,6 +86,10 @@ public class CredentialsEntity {
     private Date lastModificationDate;
 
 
+    @Column(name = "CRED_STATUS", nullable = false)
+    private CredentialsStatus status;
+
+
     /**
      * An {@link UUID} typed identifier of the user being the credentials' owner.
      */
@@ -98,18 +103,18 @@ public class CredentialsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CredentialsEntity that = (CredentialsEntity) o;
-        return Objects.equals(password, that.password) &&
-                credentialsShortName.equals(that.credentialsShortName) &&
+        return credsID.equals(that.credsID) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(credentialsShortName, that.credentialsShortName) &&
                 Objects.equals(login, that.login) &&
                 Objects.equals(url, that.url) &&
                 Objects.equals(description, that.description) &&
                 creationDate.equals(that.creationDate) &&
-                lastModificationDate.equals(that.lastModificationDate) &&
-                credentialsOwner.equals(that.credentialsOwner);
+                lastModificationDate.equals(that.lastModificationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(password, credentialsShortName, login, url, description, creationDate, lastModificationDate, credentialsOwner);
+        return Objects.hash(credsID, password, credentialsShortName, login, url, description, creationDate, lastModificationDate);
     }
 }

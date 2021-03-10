@@ -1,6 +1,7 @@
 package com.passnail.data.access.model.dao;
 
 
+import com.passnail.data.model.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -28,4 +29,6 @@ public interface UserRepository extends JpaRepository<UserEntity, UUID> {
      * @return A {@link UserEntity} containing a user's information stored in the database.
      */
     UserEntity findByEmailAddress(String aEmail);
+
+    UserEntity findByOnlineID(String aOnlineId);
 }

@@ -63,6 +63,10 @@
             <artifactId>spring-boot-starter-data-jdbc</artifactId>
             <version>${version.spring.boot.strater.data.jdbc}</version>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
 
         <dependency>
             <groupId>com.h2database</groupId>
