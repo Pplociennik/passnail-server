@@ -4,7 +4,7 @@ import lombok.*;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Set;
+import java.util.List;
 
 /**
  * A Data Transfer Object for transferring the {@link com.passnail.data.model.entity.UserEntity} database objects.
@@ -28,5 +28,5 @@ public class UserDto implements Serializable {
 
     private String onlineId;
 
-    private Set<CredentialsDto> savedCredentials;
+    private List<CredentialsDto> savedCredentials;
 }

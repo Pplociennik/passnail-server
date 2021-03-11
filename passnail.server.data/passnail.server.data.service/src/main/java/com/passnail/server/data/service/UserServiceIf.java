@@ -16,8 +16,10 @@ public interface UserServiceIf {
     List<UserEntity> getAllFromDb();
 
     UserEntity getByOnlineId(String aOnlineId);
-    
+
     void addNewCredentialsToUser(UserEntity aUserFromServer, List<CredentialsEntity> aCredentials);
 
     void updateUserAndHisCredentials(UserEntity aUserFromServer, List<CredentialsEntity> toUpdateOnServer);
+
+    void saveInDb(UserEntity aUser);
 }

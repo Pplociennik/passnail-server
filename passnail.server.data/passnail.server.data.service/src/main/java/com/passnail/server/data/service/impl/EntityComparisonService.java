@@ -69,8 +69,12 @@ public class EntityComparisonService implements EntityComparisonServiceIf {
 
     @Override
     public List<CredentialsEntity> filterToDeleteForClient(UserEntity aUserFromClient, UserEntity aUserFromServer) {
+        var onlineIdsOfClientsCredentials = aUserFromClient.getSavedCredentials().stream()
+                .map(fromClient -> fromClient.getCredsID())
+                .collect(toList());
+
         var existOnServerAndOnClient = aUserFromServer.getSavedCredentials().stream()
-                .filter(fromServer -> aUserFromClient.getSavedCredentials().contains(fromServer))
+                .filter(fromServer -> onlineIdsOfClientsCredentials.contains(fromServer.getCredsID()))
                 .collect(toList());
 
         return existOnServerAndOnClient.stream()

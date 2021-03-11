@@ -9,4 +9,6 @@ import com.passnail.data.transfer.model.dto.UserDto;
 public interface SynchronizationServiceIf {
 
     UserDto synchronizeServer(UserDto aUserFromClient);
+
+    String createOnlineUserAndReturnOnlineId(UserDto aDto);
 }
