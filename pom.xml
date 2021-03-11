@@ -49,6 +49,7 @@
 
         <version.javax.servlet.api>4.0.1</version.javax.servlet.api>
         <version.passay>1.6.0</version.passay>
+        <version.postgresql.jdbc.driver>42.2.19</version.postgresql.jdbc.driver>
     </properties>
 
 

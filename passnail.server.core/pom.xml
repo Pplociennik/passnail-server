@@ -31,6 +31,12 @@
             <artifactId>passnail.server.data.model</artifactId>
             <version>${project.version}</version>
         </dependency>
+        <dependency>
+            <groupId>org.postgresql</groupId>
+            <artifactId>postgresql</artifactId>
+            <version>${version.postgresql.jdbc.driver}</version>
+        </dependency>
+
     </dependencies>
 
     <build>
@@ -96,12 +102,12 @@
         <profile>
             <id>deploy-heroku</id>
             <properties>
-                <value.spring.datasource.url>jdbc:h2:file:./bazaDanych</value.spring.datasource.url>
-                <value.spring.datasource.username>sa</value.spring.datasource.username>
-                <value.spring.datasource.password>sa</value.spring.datasource.password>
-                <value.spring.datasource.driverClassName>org.h2.Driver</value.spring.datasource.driverClassName>
-                <value.spring.jpa.database-platform>org.hibernate.dialect.H2Dialect</value.spring.jpa.database-platform>
-                <value.spring.jpa.hibernate.ddl-auto>create</value.spring.jpa.hibernate.ddl-auto>
+                <value.spring.datasource.url>ENC(61BPp4n0DXcs3G5WZUx+t70gbB/PN6Te/6pkGFeHvXVg39HADp4efeasfIGGechf/AMBWjodMyWZKrSmq2YEq4buKTSVisevJFZSu7kimAm5smF8w1uVtQW0jW38P2ig)</value.spring.datasource.url>
+                <value.spring.datasource.username>ENC(S7iZY/nAU7iHY+gpz1Q8NDG8TNxB3BlW)</value.spring.datasource.username>
+                <value.spring.datasource.password>ENC(5ir1+z6pylxa0sQ1o83EXWr23+HdiegkUb1xAg0Ks6w+0NX0GOVST2F9Tfhmr+fyF1FJTIejTS/7bhpBxnYC9o2si4JgBwNp00HT/8gzgUk=)</value.spring.datasource.password>
+                <value.spring.datasource.driverClassName>org.postgresql.Driver</value.spring.datasource.driverClassName>
+                <value.spring.jpa.database-platform>org.hibernate.dialect.PostgreSQLDialect</value.spring.jpa.database-platform>
+                <value.spring.jpa.hibernate.ddl-auto>update</value.spring.jpa.hibernate.ddl-auto>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
