@@ -19,7 +19,7 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
-import static com.passnail.server.data.map.EntityToDtoDataMapper.map;
+import static com.passnail.server.data.map.EntityToDtoDataMapper.mapManyCredentials;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -68,10 +68,10 @@ public class SynchronizationService implements SynchronizationServiceIf {
     private SynchronizationResultDto createSynchUserForClient(UserEntity aUserFromServer, List<CredentialsEntity> toCreateOnClient, List<CredentialsEntity> toUpdateOnClient, List<CredentialsEntity> toDeleteOnClient, List<CredentialsEntity> createdOnServer) {
 
         return SynchronizationResultDto.builder()
-                .toCreateOnClient(map(toCreateOnClient))
-                .toUpdateOnClient(map(toUpdateOnClient))
-                .toDeleteOnClient(map(toDeleteOnClient))
-                .createdOnServer(map(createdOnServer))
+                .toCreateOnClient(mapManyCredentials(toCreateOnClient))
+                .toUpdateOnClient(mapManyCredentials(toUpdateOnClient))
+                .toDeleteOnClient(mapManyCredentials(toDeleteOnClient))
+                .createdOnServer(mapManyCredentials(createdOnServer))
                 .build();
     }
 
@@ -80,6 +80,10 @@ public class SynchronizationService implements SynchronizationServiceIf {
         List<String> onlineIdsFromServer = userService.getAllFromDb().stream()
                 .map(userEntity -> userEntity.getOnlineID())
                 .collect(toList());
+
+        if (aDto.getOnlineId() != null) {
+            throw new IllegalArgumentException("User has an online ID already generated!");
+        }
 
         PasswordGenerator generator = new PasswordGenerator();
 

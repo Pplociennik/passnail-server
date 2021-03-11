@@ -1,7 +1,9 @@
 package com.passnail.server.data.map;
 
 import com.passnail.data.model.entity.CredentialsEntity;
+import com.passnail.data.model.entity.UserEntity;
 import com.passnail.data.transfer.model.dto.CredentialsDto;
+import com.passnail.data.transfer.model.dto.UserDto;
 
 import java.util.List;
 
@@ -13,13 +15,13 @@ import static java.util.stream.Collectors.toList;
  */
 public class EntityToDtoDataMapper {
 
-    public static List<CredentialsDto> map(List<CredentialsEntity> aEntities) {
+    public static List<CredentialsDto> mapManyCredentials(List<CredentialsEntity> aEntities) {
         return aEntities.stream()
-                .map(aEntity -> mapOnlyOneToDto(aEntity))
+                .map(aEntity -> mapSingleCredentials(aEntity))
                 .collect(toList());
     }
 
-    public static CredentialsDto mapOnlyOneToDto(CredentialsEntity aEntity) {
+    public static CredentialsDto mapSingleCredentials(CredentialsEntity aEntity) {
         return CredentialsDto.builder()
                 .uniqueIdentifier(aEntity.getCredsID())
                 .password(aEntity.getPassword())
@@ -29,6 +31,18 @@ public class EntityToDtoDataMapper {
                 .credentialsShortName(aEntity.getCredentialsShortName())
                 .url(aEntity.getUrl())
                 .creationDate(aEntity.getCreationDate())
+                .build();
+    }
+
+    public static UserDto mapSingleUser(UserEntity aUser) {
+        return UserDto.builder()
+                .onlineId(aUser.getOnlineID())
+                .login(aUser.getLogin())
+                .password(aUser.getPassword())
+                .local(aUser.getLocal())
+                .emailAddress(aUser.getEmailAddress())
+                .creationDate(aUser.getCreationDate())
+                .savedCredentials(mapManyCredentials(aUser.getSavedCredentials()))
                 .build();
     }
 }
