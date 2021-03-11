@@ -13,7 +13,6 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>passnail.server.web.service</module>
         <module>passnail.server.web.api</module>
     </modules>
 

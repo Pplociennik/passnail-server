@@ -17,7 +17,22 @@
     <dependencies>
         <dependency>
             <groupId>com.passnail</groupId>
-            <artifactId>passnail.server.web.service</artifactId>
+            <artifactId>passnail.server.data.access</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.server.data.model</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.server.data.service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.server.data.transfer</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

@@ -17,7 +17,7 @@
     <dependencies>
         <dependency>
             <groupId>com.passnail</groupId>
-            <artifactId>passnail.server.web.api</artifactId>
+            <artifactId>passnail.server.core</artifactId>
             <version>${project.version}</version>
         </dependency>
     </dependencies>

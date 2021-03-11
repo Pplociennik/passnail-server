@@ -20,15 +20,9 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
-
         <dependency>
             <groupId>com.passnail</groupId>
-            <artifactId>passnail.server.data.service</artifactId>
-            <version>${project.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.passnail</groupId>
-            <artifactId>passnail.server.data.model</artifactId>
+            <artifactId>passnail.server.web.api</artifactId>
             <version>${project.version}</version>
         </dependency>
         <dependency>
