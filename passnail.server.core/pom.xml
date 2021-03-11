@@ -102,12 +102,13 @@
         <profile>
             <id>deploy-heroku</id>
             <properties>
-                <value.spring.datasource.url>ENC(61BPp4n0DXcs3G5WZUx+t70gbB/PN6Te/6pkGFeHvXVg39HADp4efeasfIGGechf/AMBWjodMyWZKrSmq2YEq4buKTSVisevJFZSu7kimAm5smF8w1uVtQW0jW38P2ig)</value.spring.datasource.url>
-                <value.spring.datasource.username>ENC(S7iZY/nAU7iHY+gpz1Q8NDG8TNxB3BlW)</value.spring.datasource.username>
-                <value.spring.datasource.password>ENC(5ir1+z6pylxa0sQ1o83EXWr23+HdiegkUb1xAg0Ks6w+0NX0GOVST2F9Tfhmr+fyF1FJTIejTS/7bhpBxnYC9o2si4JgBwNp00HT/8gzgUk=)</value.spring.datasource.password>
+                <value.spring.datasource.url>ENC(S7UD/iUdPFbueSqSsEn8LhTITprf592hZJJ/PX0XU0RwH3cweyaupB6MR6ITtT0RnK4fEIyfDAhlRwB5aYjzeq78bCCz7tK6Rc8Yilii8QbX8RSLJctM1ZnwmOltdnNe)</value.spring.datasource.url>
+                <value.spring.datasource.username>ENC(VU87MdXXkpa1dkTgPKCSzw+5Sjb0xlJe)</value.spring.datasource.username>
+                <value.spring.datasource.password>ENC(LCC+6Dbqx9IOiHFDSkFOG/XW6u8YAs1FCijVUDKSQjMp3+FAQg9d8V0Ej4fW7ARe6BYFbsLhycnEMbBvLcVoKEAoeN/onFS98hu7fP9l9Sw=)</value.spring.datasource.password>
                 <value.spring.datasource.driverClassName>org.postgresql.Driver</value.spring.datasource.driverClassName>
                 <value.spring.jpa.database-platform>org.hibernate.dialect.PostgreSQLDialect</value.spring.jpa.database-platform>
                 <value.spring.jpa.hibernate.ddl-auto>update</value.spring.jpa.hibernate.ddl-auto>
+                <value.jasypt.encryptor.password>3$UPERM6GISTERK9POLEC@M3</value.jasypt.encryptor.password>
             </properties>
             <activation>
                 <activeByDefault>true</activeByDefault>
