@@ -2,7 +2,7 @@ package com.passnail.server.data.service.impl;
 
 import com.passnail.data.model.entity.CredentialsEntity;
 import com.passnail.data.model.entity.UserEntity;
-import com.passnail.data.transfer.model.dto.CredentialsDto;
+import com.passnail.data.transfer.model.dto.SynchronizationResultDto;
 import com.passnail.data.transfer.model.dto.UserDto;
 import com.passnail.server.data.map.DtoToEntityDataMapper;
 import com.passnail.server.data.service.EntityComparisonServiceIf;
@@ -17,7 +17,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
-import java.util.LinkedList;
 import java.util.List;
 
 import static com.passnail.server.data.map.EntityToDtoDataMapper.map;
@@ -38,7 +37,7 @@ public class SynchronizationService implements SynchronizationServiceIf {
 
 
     @Override
-    public UserDto synchronizeServer(UserDto aUserFromClient) {
+    public SynchronizationResultDto synchronizeServer(UserDto aUserFromClient) {
         var userFromClient = DtoToEntityDataMapper.map(List.of(aUserFromClient)).get(0);
         var userFromServer = userService.getByOnlineId(aUserFromClient.getOnlineId());
 
@@ -52,29 +51,27 @@ public class SynchronizationService implements SynchronizationServiceIf {
         var toCreateOnClient = entityComparisonService.filterToCreateForClient(userFromClient, userFromServer);
         var toDeleteOnClient = entityComparisonService.filterToDeleteForClient(userFromClient, userFromServer);
 
-        createNewForUserOnServer(userFromServer, toCreateOnServer);
+        var createdOnServer = createNewForUserOnServer(userFromServer, toCreateOnServer);
         updateUserAndUsersCredentialsOnServer(userFromServer, toUpdateOnServer);
 
-        return createSynchUserForClient(userFromServer, toCreateOnClient, toUpdateOnClient, toDeleteOnClient);
+        return createSynchUserForClient(userFromServer, toCreateOnClient, toUpdateOnClient, toDeleteOnClient, createdOnServer);
     }
 
-    private void createNewForUserOnServer(UserEntity aUserFromServer, List<CredentialsEntity> toCreateOnServer) {
-        userService.addNewCredentialsToUser(aUserFromServer, toCreateOnServer);
+    private List<CredentialsEntity> createNewForUserOnServer(UserEntity aUserFromServer, List<CredentialsEntity> toCreateOnServer) {
+        return userService.addNewCredentialsToUser(aUserFromServer, toCreateOnServer);
     }
 
     private void updateUserAndUsersCredentialsOnServer(UserEntity aUserFromServer, List<CredentialsEntity> toUpdateOnServer) {
         userService.updateUserAndHisCredentials(aUserFromServer, toUpdateOnServer);
     }
 
-    private UserDto createSynchUserForClient(UserEntity aUserFromServer, List<CredentialsEntity> toCreateOnClient, List<CredentialsEntity> toUpdateOnClient, List<CredentialsEntity> toDeleteOnClient) {
-        List<CredentialsDto> aListForClient = new LinkedList<>();
-        aListForClient.addAll(map(toCreateOnClient));
-        aListForClient.addAll(map(toUpdateOnClient));
-        aListForClient.removeAll(map(toDeleteOnClient));
+    private SynchronizationResultDto createSynchUserForClient(UserEntity aUserFromServer, List<CredentialsEntity> toCreateOnClient, List<CredentialsEntity> toUpdateOnClient, List<CredentialsEntity> toDeleteOnClient, List<CredentialsEntity> createdOnServer) {
 
-        return UserDto.builder()
-                .onlineId(aUserFromServer.getOnlineID())
-                .savedCredentials(aListForClient)
+        return SynchronizationResultDto.builder()
+                .toCreateOnClient(map(toCreateOnClient))
+                .toUpdateOnClient(map(toUpdateOnClient))
+                .toDeleteOnClient(map(toDeleteOnClient))
+                .createdOnServer(map(createdOnServer))
                 .build();
     }
 

@@ -1,6 +1,7 @@
 package com.passnail.server.web.api;
 
 
+import com.passnail.data.transfer.model.dto.SynchronizationResultDto;
 import com.passnail.data.transfer.model.dto.UserDto;
 import com.passnail.server.data.service.SynchronizationServiceIf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +23,7 @@ public class SynchronizationController {
 
 
     @RequestMapping(path = "/user/synchronize")
-    public UserDto synchronizeUser(UserDto aUserFromClient) {
+    public SynchronizationResultDto synchronizeUser(UserDto aUserFromClient) {
         return synchronizationService.synchronizeServer(aUserFromClient);
     }
 

@@ -15,11 +15,11 @@ public class EntityToDtoDataMapper {
 
     public static List<CredentialsDto> map(List<CredentialsEntity> aEntities) {
         return aEntities.stream()
-                .map(aEntity -> mapToDto(aEntity))
+                .map(aEntity -> mapOnlyOneToDto(aEntity))
                 .collect(toList());
     }
 
-    private static CredentialsDto mapToDto(CredentialsEntity aEntity) {
+    public static CredentialsDto mapOnlyOneToDto(CredentialsEntity aEntity) {
         return CredentialsDto.builder()
                 .uniqueIdentifier(aEntity.getCredsID())
                 .password(aEntity.getPassword())

@@ -22,15 +22,23 @@ public class EntityComparisonService implements EntityComparisonServiceIf {
 
     @Override
     public List<CredentialsEntity> filterToCreateForServer(UserEntity aUserFromClient, UserEntity aUserFromServer) {
+        var uniqueIdsFromServer = aUserFromServer.getSavedCredentials().stream()
+                .map(fromServer -> fromServer.getCredsID())
+                .collect(toList());
+
         return aUserFromClient.getSavedCredentials().stream()
-                .filter(fromClient -> !aUserFromServer.getSavedCredentials().contains(fromClient))
+                .filter(fromClient -> !uniqueIdsFromServer.contains(fromClient.getCredsID()))
                 .collect(toList());
     }
 
     @Override
     public List<CredentialsEntity> filterToCreateForClient(UserEntity aUserFromClient, UserEntity aUserFromServer) {
+        var uniqueIdsFromClient = aUserFromClient.getSavedCredentials().stream()
+                .map(fromClient -> fromClient.getCredsID())
+                .collect(toList());
+
         return aUserFromServer.getSavedCredentials().stream()
-                .filter(fromServer -> !aUserFromClient.getSavedCredentials().contains(fromServer))
+                .filter(fromServer -> !uniqueIdsFromClient.contains(fromServer.getCredsID()))
                 .filter(fromServer -> fromServer.getStatus().equals(MAINTAINED))
                 .collect(toList());
     }

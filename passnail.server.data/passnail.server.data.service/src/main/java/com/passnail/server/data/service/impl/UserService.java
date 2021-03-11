@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+import static java.util.stream.Collectors.toList;
+
 /**
  * Created by: Pszemko at wtorek, 09.03.2021 19:45
  * Project: passnail-server
@@ -42,8 +44,17 @@ public class UserService implements UserServiceIf {
     }
 
     @Override
-    public void addNewCredentialsToUser(UserEntity aUserFromServer, List<CredentialsEntity> aCredentials) {
+    public List<CredentialsEntity> addNewCredentialsToUser(UserEntity aUserFromServer, List<CredentialsEntity> aCredentials) {
         aUserFromServer.getSavedCredentials().addAll(aCredentials);
+        userRepository.save(aUserFromServer);
+
+        var uniqueCredentialsIds = aCredentials.stream()
+                .map(fromClient -> fromClient.getCredsID())
+                .collect(toList());
+
+        return aUserFromServer.getSavedCredentials().stream()
+                .filter(fromServer -> !uniqueCredentialsIds.contains(fromServer.getCredsID()))
+                .collect(toList());
     }
 
     @Override

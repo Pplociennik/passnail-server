@@ -103,18 +103,16 @@ public class CredentialsEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         CredentialsEntity that = (CredentialsEntity) o;
-        return credsID.equals(that.credsID) &&
-                Objects.equals(password, that.password) &&
+        return Objects.equals(password, that.password) &&
                 Objects.equals(credentialsShortName, that.credentialsShortName) &&
                 Objects.equals(login, that.login) &&
                 Objects.equals(url, that.url) &&
                 Objects.equals(description, that.description) &&
-                creationDate.equals(that.creationDate) &&
-                lastModificationDate.equals(that.lastModificationDate);
+                Objects.equals(creationDate, that.creationDate);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(credsID, password, credentialsShortName, login, url, description, creationDate, lastModificationDate);
+        return Objects.hash(password, credentialsShortName, login, url, description, creationDate);
     }
 }

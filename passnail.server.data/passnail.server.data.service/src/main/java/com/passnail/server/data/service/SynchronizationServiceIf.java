@@ -1,5 +1,6 @@
 package com.passnail.server.data.service;
 
+import com.passnail.data.transfer.model.dto.SynchronizationResultDto;
 import com.passnail.data.transfer.model.dto.UserDto;
 
 /**
@@ -8,7 +9,7 @@ import com.passnail.data.transfer.model.dto.UserDto;
  */
 public interface SynchronizationServiceIf {
 
-    UserDto synchronizeServer(UserDto aUserFromClient);
+    SynchronizationResultDto synchronizeServer(UserDto aUserFromClient);
 
     String createOnlineUserAndReturnOnlineId(UserDto aDto);
 }

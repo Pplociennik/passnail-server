@@ -2,6 +2,7 @@ package com.passnail.server.data.service;
 
 import com.passnail.data.model.entity.CredentialsEntity;
 import com.passnail.data.model.entity.UserEntity;
+import com.passnail.data.transfer.model.dto.CredentialsDto;
 
 import java.util.List;
 
@@ -17,7 +18,7 @@ public interface UserServiceIf {
 
     UserEntity getByOnlineId(String aOnlineId);
 
-    void addNewCredentialsToUser(UserEntity aUserFromServer, List<CredentialsEntity> aCredentials);
+    List<CredentialsEntity> addNewCredentialsToUser(UserEntity aUserFromServer, List<CredentialsEntity> aCredentials);
 
     void updateUserAndHisCredentials(UserEntity aUserFromServer, List<CredentialsEntity> toUpdateOnServer);
 
