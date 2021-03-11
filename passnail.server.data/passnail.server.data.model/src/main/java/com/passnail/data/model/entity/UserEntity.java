@@ -62,6 +62,10 @@ public class UserEntity {
     private Date creationDate;
 
 
+    @Column(name = "USR_MOD", nullable = false)
+    private Date lastModificationDate;
+
+
     /**
      * A flag to distinguish if user is local or not.
      */
@@ -88,17 +92,18 @@ public class UserEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         UserEntity that = (UserEntity) o;
-        return login.equals(that.login) &&
-                password.equals(that.password) &&
-                emailAddress.equals(that.emailAddress) &&
+        return Objects.equals(login, that.login) &&
+                Objects.equals(password, that.password) &&
+                Objects.equals(emailAddress, that.emailAddress) &&
                 Objects.equals(creationDate, that.creationDate) &&
+                lastModificationDate.equals(that.lastModificationDate) &&
                 Objects.equals(local, that.local) &&
                 onlineID.equals(that.onlineID) &&
-                Objects.equals(savedCredentials, that.savedCredentials);
+                savedCredentials.equals(that.savedCredentials);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(login, password, emailAddress, creationDate, local, onlineID, savedCredentials);
+        return Objects.hash(login, password, emailAddress, creationDate, lastModificationDate, local, onlineID, savedCredentials);
     }
 }

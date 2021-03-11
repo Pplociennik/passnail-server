@@ -17,5 +17,13 @@
         <module>passnail.server.web.api</module>
     </modules>
 
+    <dependencies>
+        <dependency>
+            <groupId>com.passnail</groupId>
+            <artifactId>passnail.server.data.service</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+    </dependencies>
+
 
 </project>
