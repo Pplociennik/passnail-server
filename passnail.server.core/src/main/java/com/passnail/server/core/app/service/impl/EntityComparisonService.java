@@ -9,8 +9,8 @@ import org.springframework.stereotype.Service;
 import java.util.LinkedList;
 import java.util.List;
 
-import static com.passnail.server.core.app.entity.status.CredentialsStatus.*;
 import static com.passnail.server.core.app.entity.status.CredentialsStatus.MAINTAINED;
+import static com.passnail.server.core.app.entity.status.CredentialsStatus.REMOVED;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -50,9 +50,11 @@ public class EntityComparisonService implements EntityComparisonServiceIf {
 
         for (CredentialsEntity fromClient : aUserFromClient.getSavedCredentials()) {
             for (CredentialsEntity fromServer : aUserFromServer.getSavedCredentials()) {
-                if (fromClient.getCredsID().equals(fromServer.getCredsID()) &&
-                        fromClient.getLastModificationDate().after(fromServer.getLastModificationDate())) {
-                    resultList.add(fromClient);
+                if (fromClient.getCredsID() != null) {
+                    if (fromClient.getCredsID().equals(fromServer.getCredsID()) &&
+                            fromClient.getLastModificationDate().after(fromServer.getLastModificationDate())) {
+                        resultList.add(fromClient);
+                    }
                 }
             }
         }
@@ -68,7 +70,7 @@ public class EntityComparisonService implements EntityComparisonServiceIf {
             for (CredentialsEntity fromServer : aUserFromServer.getSavedCredentials()) {
                 if (fromClient.getCredsID().equals(fromServer.getCredsID()) &&
                         fromClient.getLastModificationDate().before(fromServer.getLastModificationDate())) {
-                    resultList.add(fromClient);
+                    resultList.add(fromServer);
                 }
             }
         }
