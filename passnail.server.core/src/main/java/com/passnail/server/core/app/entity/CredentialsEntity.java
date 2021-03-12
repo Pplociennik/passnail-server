@@ -82,11 +82,11 @@ public class CredentialsEntity {
     /**
      * A {@link Date} being the exact date when the credentials were modified last time.
      */
-    @Column(name = "CRED_LAST_MOD", nullable = false)
+    @Column(name = "CRED_LAST_MOD")
     private Date lastModificationDate;
 
 
-    @Column(name = "CRED_STATUS", nullable = false)
+    @Column(name = "CRED_STATUS")
     private CredentialsStatus status;
 
 
