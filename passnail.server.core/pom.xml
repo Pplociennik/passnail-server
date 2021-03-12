@@ -112,16 +112,16 @@
         <profile>
             <id>deploy-rpi</id>
             <properties>
-                <value.spring.datasource.url>jdbc:h2:file:./bazaDanych</value.spring.datasource.url>
-                <value.spring.datasource.username>sa</value.spring.datasource.username>
-                <value.spring.datasource.password>sa</value.spring.datasource.password>
-                <value.spring.datasource.driverClassName>org.h2.Driver</value.spring.datasource.driverClassName>
-                <value.spring.jpa.database-platform>org.hibernate.dialect.H2Dialect</value.spring.jpa.database-platform>
-                <value.spring.jpa.hibernate.ddl-auto>create</value.spring.jpa.hibernate.ddl-auto>
+                <value.spring.datasource.url>ENC(pMACZh6xctudd3gn+6LcosGKnqKA5qic2mWTk6Pto3Q9yPmWQnr/ghlkr3cMEVNSTVx+ZMfBZsmhhNZWauwzEUgVzEuwOPhE)</value.spring.datasource.url>
+                <value.spring.datasource.username>ENC(W9BcCAcJXDmWpQSbVg+q2g==)</value.spring.datasource.username>
+                <value.spring.datasource.password>ENC(Y/V5IBSVbB6JNWySXT7zZW4iHS7uzezQ)</value.spring.datasource.password>
+                <value.spring.datasource.driverClassName>com.microsoft.sqlserver.jdbc.SQLServerDriver</value.spring.datasource.driverClassName>
+                <value.spring.jpa.database-platform>org.hibernate.dialect.SQLServer2012Dialect</value.spring.jpa.database-platform>
+                <value.spring.jpa.hibernate.ddl-auto>update</value.spring.jpa.hibernate.ddl-auto>
             </properties>
             <activation>
                 <property>
-                    <name>rpi</name>
+                    <name>deploy-rpi</name>
                 </property>
             </activation>
         </profile>
