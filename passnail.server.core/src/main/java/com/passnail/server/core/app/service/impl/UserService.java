@@ -6,7 +6,6 @@ import com.passnail.server.core.app.entity.UserEntity;
 import com.passnail.server.core.app.repository.UserRepository;
 import com.passnail.server.core.app.service.UserServiceIf;
 import org.springframework.beans.factory.annotation.Autowired;
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
@@ -53,9 +52,13 @@ public class UserService implements UserServiceIf {
                 .map(fromClient -> fromClient.getCredsID())
                 .collect(toList());
 
-        return aUserFromServer.getSavedCredentials().stream()
+        var toAddOnServer = aUserFromServer.getSavedCredentials().stream()
                 .filter(fromServer -> !uniqueCredentialsIds.contains(fromServer.getCredsID()))
                 .collect(toList());
+
+        toAddOnServer.stream().forEach(c -> c.setCredentialsOwner(aUserFromServer));
+
+        return toAddOnServer;
     }
 
     @Override
