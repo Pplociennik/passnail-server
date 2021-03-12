@@ -45,6 +45,7 @@ public class UserService implements UserServiceIf {
 
     @Override
     public List<CredentialsEntity> addNewCredentialsToUser(UserEntity aUserFromServer, List<CredentialsEntity> aCredentials) {
+        aCredentials.stream().forEach(toAdd -> toAdd.setCredentialsOwner(aUserFromServer));
         aUserFromServer.getSavedCredentials().addAll(aCredentials);
         userRepository.save(aUserFromServer);
 
@@ -56,7 +57,6 @@ public class UserService implements UserServiceIf {
                 .filter(fromServer -> !uniqueCredentialsIds.contains(fromServer.getCredsID()))
                 .collect(toList());
 
-        toAddOnServer.stream().forEach(c -> c.setCredentialsOwner(aUserFromServer));
 
         return toAddOnServer;
     }
