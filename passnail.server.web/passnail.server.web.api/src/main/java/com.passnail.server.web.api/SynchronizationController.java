@@ -17,13 +17,13 @@ public class SynchronizationController {
     private SynchronizationServiceIf synchronizationService;
 
 
-    @RequestMapping(method = RequestMethod.POST, path = "/user/create")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/create")
     public String createAnOnlineUser(UserDto aUserDto) {
         return synchronizationService.createOnlineUserAndReturnOnlineId(aUserDto);
     }
 
 
-    @RequestMapping(method = RequestMethod.POST, path = "/user/synchronize")
+    @RequestMapping(method = RequestMethod.POST, value = "/user/synchronize")
     public SynchronizationResultDto synchronizeUser(UserDto aUserFromClient) {
         return synchronizationService.synchronizeServer(aUserFromClient);
     }
