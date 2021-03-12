@@ -3,6 +3,7 @@ package com.passnail.server.core.app.service.impl;
 
 import com.passnail.server.core.app.entity.CredentialsEntity;
 import com.passnail.server.core.app.entity.UserEntity;
+import com.passnail.server.core.app.entity.status.CredentialsStatus;
 import com.passnail.server.core.app.repository.UserRepository;
 import com.passnail.server.core.app.service.UserServiceIf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,6 +47,7 @@ public class UserService implements UserServiceIf {
     @Override
     public List<CredentialsEntity> addNewCredentialsToUser(UserEntity aUserFromServer, List<CredentialsEntity> aCredentials) {
         aCredentials.stream().forEach(toAdd -> toAdd.setCredentialsOwner(aUserFromServer));
+        aCredentials.stream().forEach(toAdd -> toAdd.setStatus(CredentialsStatus.MAINTAINED));
         aUserFromServer.getSavedCredentials().addAll(aCredentials);
         userRepository.save(aUserFromServer);
 
@@ -53,12 +55,12 @@ public class UserService implements UserServiceIf {
                 .map(fromClient -> fromClient.getCredsID())
                 .collect(toList());
 
-        var toAddOnServer = aUserFromServer.getSavedCredentials().stream()
+        var createdOnServer = aUserFromServer.getSavedCredentials().stream()
                 .filter(fromServer -> !uniqueCredentialsIds.contains(fromServer.getCredsID()))
                 .collect(toList());
 
 
-        return toAddOnServer;
+        return createdOnServer;
     }
 
     @Override
