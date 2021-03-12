@@ -37,7 +37,7 @@ public class UserEntity {
     /**
      * A {@link String} being the user's login to the application.
      */
-    @Column(name = "USR_LOGIN", unique = true, nullable = false)
+    @Column(name = "USR_LOGIN", nullable = false)
     private String login;
 
 
@@ -62,7 +62,7 @@ public class UserEntity {
     private Date creationDate;
 
 
-    @Column(name = "USR_MOD", nullable = false)
+    @Column(name = "USR_MOD")
     private Date lastModificationDate;
 
 
