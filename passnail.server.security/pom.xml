@@ -33,9 +33,14 @@
         </dependency>
         <dependency>
             <groupId>com.passnail</groupId>
-            <artifactId>passnail.server.core</artifactId>
+            <artifactId>passnail.server.data.service</artifactId>
             <version>${project.version}</version>
         </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.passnail</groupId>-->
+<!--            <artifactId>passnail.server.core</artifactId>-->
+<!--            <version>${project.version}</version>-->
+<!--        </dependency>-->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
