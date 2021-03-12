@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0"
-         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+<project xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xmlns="http://maven.apache.org/POM/4.0.0"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <parent>
         <groupId>com.passnail</groupId>
@@ -40,36 +40,36 @@
     </dependencies>
 
     <build>
-            <plugins>
-                <plugin>
-                    <groupId>org.springframework.boot</groupId>
-                    <artifactId>spring-boot-maven-plugin</artifactId>
-                    <configuration>
-                        <executable>true</executable>
-                    </configuration>
-                    <executions>
-                        <execution>
-                            <goals>
-                                <goal>repackage</goal>
-                            </goals>
-                            <configuration>
-                                <mainClass>com.passnail.server.core.app.main.ServerStarter</mainClass>
-                            </configuration>
-                        </execution>
-                    </executions>
-                </plugin>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <executable>true</executable>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal>
+                        </goals>
+                        <configuration>
+                            <mainClass>com.passnail.server.core.app.ServerStarter</mainClass>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
 
-                <plugin>
-                    <groupId>org.apache.maven.plugins</groupId>
-                    <artifactId>maven-compiler-plugin</artifactId>
-                    <configuration>
-                        <source>11</source>
-                        <target>11</target>
-                        <meminitial>1024m</meminitial>
-                        <maxmem>2024m</maxmem>
-                    </configuration>
-                </plugin>
-            </plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>11</source>
+                    <target>11</target>
+                    <meminitial>1024m</meminitial>
+                    <maxmem>2024m</maxmem>
+                </configuration>
+            </plugin>
+        </plugins>
 
         <resources>
             <resource>
@@ -100,11 +100,15 @@
         <profile>
             <id>deploy-heroku</id>
             <properties>
-                <value.spring.datasource.url>ENC(dMWnghCwa5We7Ai3wY61vl26sRj4A3Qa+FK0vDcEovpZYN85MTrJZDxfOCBadXflTJORf66C19Qk3XQe9chTJuGpplisycS5)</value.spring.datasource.url>
+                <value.spring.datasource.url>
+                    ENC(dMWnghCwa5We7Ai3wY61vl26sRj4A3Qa+FK0vDcEovpZYN85MTrJZDxfOCBadXflTJORf66C19Qk3XQe9chTJuGpplisycS5)
+                </value.spring.datasource.url>
                 <value.spring.datasource.username>ENC(sMgRtMZHj2qFT0VFvlr1lQ==)</value.spring.datasource.username>
-                <value.spring.datasource.password>ENC(dpzYfLW7K7QJMKnm3i7AJ7ifK74EeZDY)</value.spring.datasource.password>
+                <value.spring.datasource.password>ENC(dpzYfLW7K7QJMKnm3i7AJ7ifK74EeZDY)
+                </value.spring.datasource.password>
                 <value.spring.datasource.driverClassName>org.postgresql.Driver</value.spring.datasource.driverClassName>
-                <value.spring.jpa.database-platform>org.hibernate.dialect.PostgreSQLDialect</value.spring.jpa.database-platform>
+                <value.spring.jpa.database-platform>org.hibernate.dialect.PostgreSQLDialect
+                </value.spring.jpa.database-platform>
                 <value.spring.jpa.hibernate.ddl-auto>update</value.spring.jpa.hibernate.ddl-auto>
                 <value.jasypt.encryptor.password>3$UPERM6GISTERK9POLEC@M3</value.jasypt.encryptor.password>
             </properties>
@@ -116,11 +120,14 @@
         <profile>
             <id>deploy-rpi</id>
             <properties>
-                <value.spring.datasource.url>jdbc:sqlserver://localhost:1433;databaseName=COM_PSSNL_DB</value.spring.datasource.url>
+                <value.spring.datasource.url>jdbc:sqlserver://localhost:1433;databaseName=COM_PSSNL_DB
+                </value.spring.datasource.url>
                 <value.spring.datasource.username>sa</value.spring.datasource.username>
                 <value.spring.datasource.password>Test1234!</value.spring.datasource.password>
-                <value.spring.datasource.driverClassName>com.microsoft.sqlserver.jdbc.SQLServerDriver</value.spring.datasource.driverClassName>
-                <value.spring.jpa.database-platform>org.hibernate.dialect.SQLServer2012Dialect</value.spring.jpa.database-platform>
+                <value.spring.datasource.driverClassName>com.microsoft.sqlserver.jdbc.SQLServerDriver
+                </value.spring.datasource.driverClassName>
+                <value.spring.jpa.database-platform>org.hibernate.dialect.SQLServer2012Dialect
+                </value.spring.jpa.database-platform>
                 <value.spring.jpa.hibernate.ddl-auto>update</value.spring.jpa.hibernate.ddl-auto>
                 <value.jasypt.encryptor.password>3$UPERM6GISTERK9POLEC@M3</value.jasypt.encryptor.password>
             </properties>
