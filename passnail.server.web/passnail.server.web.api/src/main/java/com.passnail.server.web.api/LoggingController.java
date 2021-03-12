@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @RequestMapping(path = "/api/logging")
 public class LoggingController {
 
-    @RequestMapping(method = RequestMethod.GET, path = "/log")
+    @RequestMapping(method = RequestMethod.POST, path = "/log")
     public void log() {
         System.out.println("Logging method called...");
     }
