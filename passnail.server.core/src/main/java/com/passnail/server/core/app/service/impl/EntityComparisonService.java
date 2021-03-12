@@ -68,9 +68,11 @@ public class EntityComparisonService implements EntityComparisonServiceIf {
 
         for (CredentialsEntity fromClient : aUserFromClient.getSavedCredentials()) {
             for (CredentialsEntity fromServer : aUserFromServer.getSavedCredentials()) {
-                if (fromClient.getCredsID().equals(fromServer.getCredsID()) &&
-                        fromClient.getLastModificationDate().before(fromServer.getLastModificationDate())) {
-                    resultList.add(fromServer);
+                if (fromClient.getCredsID() != null) {
+                    if (fromClient.getCredsID().equals(fromServer.getCredsID()) &&
+                            fromClient.getLastModificationDate().before(fromServer.getLastModificationDate())) {
+                        resultList.add(fromServer);
+                    }
                 }
             }
         }
