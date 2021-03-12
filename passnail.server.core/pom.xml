@@ -116,6 +116,7 @@
                 <value.spring.datasource.driverClassName>com.microsoft.sqlserver.jdbc.SQLServerDriver</value.spring.datasource.driverClassName>
                 <value.spring.jpa.database-platform>org.hibernate.dialect.SQLServer2012Dialect</value.spring.jpa.database-platform>
                 <value.spring.jpa.hibernate.ddl-auto>update</value.spring.jpa.hibernate.ddl-auto>
+                <value.jasypt.encryptor.password>3$UPERM6GISTERK9POLEC@M3</value.jasypt.encryptor.password>
             </properties>
             <activation>
                 <property>
