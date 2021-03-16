@@ -45,6 +45,18 @@ public class EntityComparisonService implements EntityComparisonServiceIf {
     }
 
     @Override
+    public List<CredentialsEntity> filterToRemoveOnServer(UserEntity userFromClient, UserEntity userFromServer) {
+        var uniqueIdsToRemoveFromServer = userFromClient.getSavedCredentials().stream()
+                .filter(fromClient -> fromClient.getStatus().equals(REMOVED))
+                .map(fromClient -> fromClient.getCredsID())
+                .collect(toList());
+
+        return userFromServer.getSavedCredentials().stream()
+                .filter(fromServer -> uniqueIdsToRemoveFromServer.contains(fromServer.getCredsID()))
+                .collect(toList());
+    }
+
+    @Override
     public List<CredentialsEntity> filterToUpdateForServer(UserEntity aUserFromClient, UserEntity aUserFromServer) {
         List<CredentialsEntity> resultList = new LinkedList<>();
 
@@ -81,7 +93,7 @@ public class EntityComparisonService implements EntityComparisonServiceIf {
     }
 
     @Override
-    public List<CredentialsEntity> filterToDeleteForClient(UserEntity aUserFromClient, UserEntity aUserFromServer) {
+    public List<CredentialsEntity> filterToRemoveOnClient(UserEntity aUserFromClient, UserEntity aUserFromServer) {
         var onlineIdsOfClientsCredentials = aUserFromClient.getSavedCredentials().stream()
                 .map(fromClient -> fromClient.getCredsID())
                 .collect(toList());

@@ -47,11 +47,16 @@ public class SynchronizationService implements SynchronizationServiceIf {
             throw new IllegalArgumentException("User does not exist!");
         }
 
+        var toRemoveOnServer = entityComparisonService.filterToRemoveOnServer(userFromClient, userFromServer);
         var toCreateOnServer = entityComparisonService.filterToCreateForServer(userFromClient, userFromServer);
         var toUpdateOnServer = entityComparisonService.filterToUpdateForServer(userFromClient, userFromServer);
         var toUpdateOnClient = entityComparisonService.filterToUpdateForClient(userFromClient, userFromServer);
         var toCreateOnClient = entityComparisonService.filterToCreateForClient(userFromClient, userFromServer);
-        var toDeleteOnClient = entityComparisonService.filterToDeleteForClient(userFromClient, userFromServer);
+        var toRemoveOnClient = entityComparisonService.filterToRemoveOnClient(userFromClient, userFromServer);
+
+        if (!toRemoveOnServer.isEmpty()) {
+            setOnServerAsRemoved(userFromServer, toRemoveOnServer);
+        }
 
         List<CredentialsEntity> createdOnServer = new LinkedList<>();
 
@@ -63,7 +68,11 @@ public class SynchronizationService implements SynchronizationServiceIf {
             updateUserAndUsersCredentialsOnServer(userFromServer, toUpdateOnServer);
         }
 
-        return createSynchUserForClient(userFromServer, toCreateOnClient, toUpdateOnClient, toDeleteOnClient, createdOnServer);
+        return createSynchUserForClient(userFromServer, toCreateOnClient, toUpdateOnClient, toRemoveOnClient, createdOnServer);
+    }
+
+    private void setOnServerAsRemoved(UserEntity aUserFromServer, List<CredentialsEntity> toRemoveOnServer) {
+        userService.markCredentialsAsRemoved(aUserFromServer, toRemoveOnServer);
     }
 
     private List<CredentialsEntity> createNewForUserOnServer(UserEntity aUserFromServer, List<CredentialsEntity> toCreateOnServer) {

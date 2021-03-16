@@ -1,6 +1,7 @@
 package com.passnail.server.core.app.dto;
 
 
+import com.passnail.server.core.app.entity.status.CredentialsStatus;
 import lombok.*;
 
 import java.io.Serializable;
@@ -32,6 +33,8 @@ public class CredentialsDto implements Serializable {
     private Date lastModificationDate;
 
     private UUID uniqueIdentifier;
+
+    private CredentialsStatus status;
 
     public String toString() {
         return credentialsShortName + "   <->   " + url;

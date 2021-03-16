@@ -18,7 +18,9 @@ public interface EntityComparisonServiceIf {
 
     List<CredentialsEntity> filterToUpdateForClient(UserEntity aUserFromClient, UserEntity aUserFromServer);
 
-    List<CredentialsEntity> filterToDeleteForClient(UserEntity aUserFromClient, UserEntity aUserFromServer);
+    List<CredentialsEntity> filterToRemoveOnClient(UserEntity aUserFromClient, UserEntity aUserFromServer);
 
     List<CredentialsEntity> filterToCreateForClient(UserEntity aUserFromClient, UserEntity aUserFromServer);
+
+    List<CredentialsEntity> filterToRemoveOnServer(UserEntity userFromClient, UserEntity userFromServer);
 }

@@ -3,7 +3,6 @@ package com.passnail.server.core.app.service.impl;
 
 import com.passnail.server.core.app.entity.CredentialsEntity;
 import com.passnail.server.core.app.entity.UserEntity;
-import com.passnail.server.core.app.entity.status.CredentialsStatus;
 import com.passnail.server.core.app.repository.UserRepository;
 import com.passnail.server.core.app.service.UserServiceIf;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +11,8 @@ import org.springframework.stereotype.Service;
 import java.util.Date;
 import java.util.List;
 
+import static com.passnail.server.core.app.entity.status.CredentialsStatus.MAINTAINED;
+import static com.passnail.server.core.app.entity.status.CredentialsStatus.REMOVED;
 import static java.util.stream.Collectors.toList;
 
 /**
@@ -47,7 +48,7 @@ public class UserService implements UserServiceIf {
     @Override
     public List<CredentialsEntity> addNewCredentialsToUser(UserEntity aUserFromServer, List<CredentialsEntity> aCredentials) {
         aCredentials.stream().forEach(toAdd -> toAdd.setCredentialsOwner(aUserFromServer));
-        aCredentials.stream().forEach(toAdd -> toAdd.setStatus(CredentialsStatus.MAINTAINED));
+        aCredentials.stream().forEach(toAdd -> toAdd.setStatus(MAINTAINED));
         aUserFromServer.getSavedCredentials().addAll(aCredentials);
         userRepository.save(aUserFromServer);
 
@@ -85,5 +86,17 @@ public class UserService implements UserServiceIf {
     @Override
     public void saveInDb(UserEntity aUser) {
         userRepository.save(aUser);
+    }
+
+    @Override
+    public void markCredentialsAsRemoved(UserEntity aUserFromServer, List<CredentialsEntity> toRemoveOnServer) {
+        for (CredentialsEntity toRemove : toRemoveOnServer) {
+            for (CredentialsEntity fromServer : aUserFromServer.getSavedCredentials()) {
+                if (fromServer.getCredsID().equals(toRemove.getCredsID())) {
+                    fromServer.setStatus(REMOVED);
+                }
+            }
+        }
+        userRepository.save(aUserFromServer);
     }
 }

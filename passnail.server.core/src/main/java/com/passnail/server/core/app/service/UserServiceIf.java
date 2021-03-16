@@ -23,4 +23,6 @@ public interface UserServiceIf {
     void updateUserAndHisCredentials(UserEntity aUserFromServer, List<CredentialsEntity> toUpdateOnServer);
 
     void saveInDb(UserEntity aUser);
+
+    void markCredentialsAsRemoved(UserEntity aUserFromServer, List<CredentialsEntity> toRemoveOnServer);
 }

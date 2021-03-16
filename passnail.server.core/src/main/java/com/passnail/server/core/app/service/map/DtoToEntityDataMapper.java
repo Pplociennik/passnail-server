@@ -35,6 +35,7 @@ public class DtoToEntityDataMapper {
                                                 .login(c.getLogin())
                                                 .password(c.getPassword())
                                                 .credsID(c.getUniqueIdentifier())
+                                                .status(c.getStatus())
                                                 .build())
                                         .collect(Collectors.toList())
                         )
