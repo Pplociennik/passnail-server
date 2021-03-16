@@ -56,7 +56,7 @@ public class UserService implements UserServiceIf {
                 .collect(toList());
 
         var createdOnServer = aUserFromServer.getSavedCredentials().stream()
-                .filter(fromServer -> !uniqueCredentialsIds.contains(fromServer.getCredsID()))
+                .filter(fromServer -> aCredentials.contains(fromServer))
                 .collect(toList());
 
 
