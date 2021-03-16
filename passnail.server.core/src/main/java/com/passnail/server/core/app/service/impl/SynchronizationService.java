@@ -5,10 +5,10 @@ import com.passnail.server.core.app.dto.SynchronizationResultDto;
 import com.passnail.server.core.app.dto.UserDto;
 import com.passnail.server.core.app.entity.CredentialsEntity;
 import com.passnail.server.core.app.entity.UserEntity;
-import com.passnail.server.core.app.service.map.DtoToEntityDataMapper;
 import com.passnail.server.core.app.service.EntityComparisonServiceIf;
 import com.passnail.server.core.app.service.SynchronizationServiceIf;
 import com.passnail.server.core.app.service.UserServiceIf;
+import com.passnail.server.core.app.service.map.DtoToEntityDataMapper;
 import com.passnail.server.core.app.service.util.SynchronizationConstants;
 import org.passay.CharacterData;
 import org.passay.CharacterRule;
@@ -18,6 +18,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.LinkedList;
 import java.util.List;
 
 import static com.passnail.server.core.app.service.map.EntityToDtoDataMapper.mapManyCredentials;
@@ -52,8 +53,15 @@ public class SynchronizationService implements SynchronizationServiceIf {
         var toCreateOnClient = entityComparisonService.filterToCreateForClient(userFromClient, userFromServer);
         var toDeleteOnClient = entityComparisonService.filterToDeleteForClient(userFromClient, userFromServer);
 
-        var createdOnServer = createNewForUserOnServer(userFromServer, toCreateOnServer);
-        updateUserAndUsersCredentialsOnServer(userFromServer, toUpdateOnServer);
+        List<CredentialsEntity> createdOnServer = new LinkedList<>();
+
+        if (!toCreateOnServer.isEmpty()) {
+            createdOnServer = createNewForUserOnServer(userFromServer, toCreateOnServer);
+        }
+
+        if (!toUpdateOnServer.isEmpty()) {
+            updateUserAndUsersCredentialsOnServer(userFromServer, toUpdateOnServer);
+        }
 
         return createSynchUserForClient(userFromServer, toCreateOnClient, toUpdateOnClient, toDeleteOnClient, createdOnServer);
     }
